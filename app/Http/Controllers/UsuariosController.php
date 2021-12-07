@@ -12,7 +12,10 @@ class UsuariosController extends Controller
     {
         $usuarios = Usuario::orderBy('id', 'asc')->get();
 
-        return view('usuarios.index', ['usuarios' => $usuarios, 'pagina' => 'usuarios']);
+        return view('usuarios.index', [
+            'usuarios' => $usuarios,
+            'pagina' => 'usuarios',
+        ]);
     }
 
     public function create()
@@ -24,10 +27,10 @@ class UsuariosController extends Controller
     {
         $usuario = new Usuario();
 
-        $usuario->nome = $form->nome;
+        $usuario->name = $form->nome;
         $usuario->email = $form->email;
-        $usuario->usuario = $form->usuario;
-        $usuario->senha = Hash::make($form->senha);
+        $usuario->username = $form->usuario;
+        $usuario->password = Hash::make($form->senha);
 
         $usuario->save();
 
@@ -38,20 +41,25 @@ class UsuariosController extends Controller
     public function login(Request $form)
     {
         // Está enviando o formulário
-        if ($form->isMethod('POST'))
-        {
+        if ($form->isMethod('POST')) {
             $usuario = $form->usuario;
             $senha = $form->senha;
 
-            $consulta = Usuario::select('id', 'nome', 'email', 'usuario', 'senha')->where('usuario', $usuario)->get();
+            $consulta = Usuario::select(
+                'id',
+                'name',
+                'email',
+                'username',
+                'password'
+            )
+                ->where('username', $usuario)
+                ->get();
 
             // Confere se encontrou algum usuário
-            if ($consulta->count())
-            {
+            if ($consulta->count()) {
                 // Confere se a senha está correta
-                if (Hash::check($senha, $consulta[0]->senha))
-                {
-                    unset($consulta[0]->senha);
+                if (Hash::check($senha, $consulta[0]->password)) {
+                    unset($consulta[0]->password);
 
                     session()->put('usuario', $consulta[0]);
 
@@ -60,7 +68,9 @@ class UsuariosController extends Controller
             }
 
             // Login deu errado (usuário ou senha inválidos)
-            return redirect()->route('login')->with('erro', 'Usuário ou senha inválidos.');
+            return redirect()
+                ->route('login')
+                ->with('erro', 'Usuário ou senha inválidos.');
         }
 
         return view('usuarios.login');
