@@ -39,4 +39,5 @@ class Usuario extends Model implements Authenticatable
     }
 
     public $timestamps = false;
+    protected $hidden = ['password'];
 }
