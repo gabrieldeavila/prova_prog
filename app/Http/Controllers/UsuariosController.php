@@ -47,12 +47,12 @@ class UsuariosController extends Controller
             // Se um dos campos não for preenchidos, nem tenta o logine volta
             // para a página anterior
             $credenciais = $form->validate([
-                'usuario' => ['required'],
-                'senha' => ['required'],
+                'username' => ['required'],
+                'password' => ['required'],
             ]);
-
             // Tenta o login
             if (Auth::attempt($credenciais)) {
+                dd(Auth::user());
                 session()->regenerate();
                 return redirect()->route('home');
             } else {
