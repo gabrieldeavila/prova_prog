@@ -52,8 +52,8 @@ class UsuariosController extends Controller
             ]);
             // Tenta o login
             if (Auth::attempt($credenciais)) {
-                dd(Auth::user());
                 session()->regenerate();
+                session()->put('usuario', Auth::user());
                 return redirect()->route('home');
             } else {
                 // Login deu errado (usuário ou senha inválidos)
@@ -67,6 +67,8 @@ class UsuariosController extends Controller
 
     public function logout()
     {
+        // ini_set('memory_limit', '-1');
+        // Auth::logout();
         session()->forget('usuario');
         return redirect()->route('home');
     }

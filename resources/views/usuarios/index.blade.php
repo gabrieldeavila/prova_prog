@@ -21,7 +21,7 @@
         </tr>
 
         @foreach ($usuarios as $usuario)
-        <tr>
+        <tr class={{$usuario->admin ? "bg-success" : "bg-white"}}>
             <td>{{ $usuario->id }}</td>
             <td>{{ $usuario->name }}</td>
             <td>{{ $usuario->email }}</td>

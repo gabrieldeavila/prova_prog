@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class Usuario extends Model implements Authenticatable
 {
     use HasFactory;
     public function getAuthIdentifierName()
     {
-        return ‘id’;
+        return Auth::user()->username;
     }
 
     public function getAuthIdentifier()

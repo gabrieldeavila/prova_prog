@@ -20,8 +20,9 @@
         </ul>
 
         <div class="text-end">
+            {{-- {{Auth::user()->username}} --}}
           @if (session('usuario'))
-            Olá, {{ session('usuario.name') }}!
+            Olá, {{ session('usuario.username') }}!
             <a href="{{ route('logout') }}" role="button" class="btn btn-outline-danger">Sair</a>
           @else
             <a href="{{ route('login') }}" role="button" class="btn btn-outline-light me-2">Login</a>
