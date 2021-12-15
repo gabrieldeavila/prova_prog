@@ -69,7 +69,7 @@
 
             <div class="checkbox mb-3">
                 <label>
-                    <input type="checkbox" name="remember" value="true"> Lembrar
+                    <input type="checkbox" name="remember" value=true> Lembrar
                 </label>
             </div>
             <button class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
