@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
 
 class Usuario extends Authenticatable implements MustVerifyEmail
 {
@@ -14,9 +15,7 @@ class Usuario extends Authenticatable implements MustVerifyEmail
 
     public $timestamps = false;
 
-    protected $hidden = [
-        'password',
-    ];
+    protected $hidden = ['password'];
 
     public function getAuthIdentifierName()
     {
@@ -40,7 +39,9 @@ class Usuario extends Authenticatable implements MustVerifyEmail
 
     public function setRememberToken($token)
     {
-        DB::table('usuarios')->where('id', $this->id)->update(['remember_token' => $token]);
+        DB::table('usuarios')
+            ->where('id', $this->id)
+            ->update(['remember_token' => $token]);
         return;
     }
 

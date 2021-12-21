@@ -38,6 +38,14 @@ Route::get('/profile/edit', [UsuariosController::class, 'profile_edit'])
     ->middleware('auth')
     ->name('profile.edit');
 
+Route::get('/profile/password', [UsuariosController::class, 'profile_password'])
+    ->middleware('auth')
+    ->name('profile.password');
+
+Route::post('/profile/password', [UsuariosController::class, 'update_password'])
+    ->middleware('auth')
+    ->name('profile.password_edit');
+
 Route::get('/email/verify/{id}/{hash}', function (
     EmailVerificationRequest $request
 ) {

@@ -12,5 +12,5 @@
 </ul>
 
 <a href="{{ route('profile.edit') }}" role="button" class="btn btn-outline-secondary ">Alterar dados do perfil</a>
-<a href="{{ route('login') }}" role="button" class="btn btn-outline-secondary ">Alterar senha</a>
+<a href="{{ route('profile.password') }}" role="button" class="btn btn-outline-secondary ">Alterar senha</a>
 @endsection

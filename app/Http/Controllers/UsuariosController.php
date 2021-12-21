@@ -61,20 +61,39 @@ class UsuariosController extends Controller
 
     public function update(Request $form)
     {
-        DB::table('usuarios')
-            ->where('id', Auth::user()->id)
-            ->update([
-                'email' => $form->email,
-                'username' => $form->username,
-                'name' => $form->name,
-            ]);
-        // dd('mudou, será?');
-        return view('usuarios.profile', ['pagina' => 'perfil']);
+        $user = Usuario::find(Auth::user()->id);
+
+        $user->email_verified_at =
+            $form->email !== $user->email ? null : $user->email_verified_at;
+        $user->email = $form->email;
+        $user->username = $form->username;
+        $user->name = $form->name;
+
+        $user->save();
+
+        return redirect('/profile');
+    }
+
+    public function profile_password()
+    {
+        return view('usuarios.profile-password', ['pagina' => 'perfil']);
     }
 
     public function profile_edit()
     {
         return view('usuarios.profile-edit', ['pagina' => 'perfil']);
+    }
+
+    public function update_password(Request $form)
+    {
+        $form->validate([
+            'password' => 'required|confirmed',
+        ]);
+
+        $user = Usuario::find(Auth::user()->id);
+        $user->password = Hash::make($form->password);
+        $user->save();
+        return redirect('/profile');
     }
 
     // Ações de login
