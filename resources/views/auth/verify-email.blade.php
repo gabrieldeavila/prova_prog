@@ -3,5 +3,8 @@
 @section('h1', 'Página de Usuários')
 
 @section('content')
-    tem q verificar teu email queridão!
+    Opa, foi enviado um email para verificação de conta, por favor verifique sua caixa de entrada.
+    <h1 class="text-center">
+        <i class="bi bi-wallet-fill"></i>
+    </h1>
 @endsection
