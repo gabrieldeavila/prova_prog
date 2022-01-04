@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProdutosController;
 use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\CropperController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
@@ -110,3 +111,11 @@ Route::get('/login', [UsuariosController::class, 'login'])->name('login');
 Route::post('/login', [UsuariosController::class, 'login']);
 
 Route::get('/logout', [UsuariosController::class, 'logout'])->name('logout');
+
+Route::get('/imagem/{id}', [CropperController::class, 'show'])->name(
+    'image.show'
+);
+
+Route::post('/imagem', [CropperController::class, 'store'])->name(
+    'image.store'
+);

@@ -30,6 +30,7 @@
             <td>
                @if(session("usuario.admin") === 1 ) <a href="{{ route('produtos.edit', $prod) }}" class="btn btn-primary btn-sm" role="button"><i class="bi bi-pencil-square"></i> Editar</a> @endif
                 <a href="{{ route('produtos.remove', $prod) }}" class="btn btn-danger btn-sm" role="button"><i class="bi bi-trash"></i> Apagar</a>
+                <a href="{{ route('image.show', $prod->id) }}" class="btn btn-success btn-sm" role="button"><i class="bi bi-crop"></i> Cortar Imagem</a>
             </td>
         </tr>
         @endforeach
