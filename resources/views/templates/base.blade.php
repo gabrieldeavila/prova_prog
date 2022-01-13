@@ -22,12 +22,16 @@
                     <li><a href="{{ route('produtos') }}" class="nav-link px-2 @if ($pagina == 'produtos') text-secondary @else text-white @endif">Produtos</a>
                     </li>
                     <li><a href="/usuarios" class="nav-link px-2 @if ($pagina == 'usuarios') text-secondary @else text-white @endif">Usuários</a></li>
+                    {{-- adicionando link galeria de produtos na navbar --}}
+                    <li><a href="{{ route('galeria') }}" class="nav-link px-2 @if ($pagina == 'galeria') text-secondary @else text-white @endif">Galeria</a>
+                    </li>
                 </ul>
 
                 <div class="text-end">
                     {{-- {{Auth::user()->username}} --}}
                     @if (Auth::user())
-                        <a href={{route('profile')}} role="button" class="btn btn-outline-primary">Olá, {{ Auth::user()->name }}! </a>
+                        <a href={{ route('profile') }} role="button" class="btn btn-outline-primary">Olá,
+                            {{ Auth::user()->name }}! </a>
                         <a href="{{ route('logout') }}" role="button" class="btn btn-outline-danger">Sair</a>
                     @else
                         <a href="{{ route('login') }}" role="button" class="btn btn-outline-light me-2">Login</a>
