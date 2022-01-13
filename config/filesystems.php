@@ -10,7 +10,7 @@ return [
     | by the framework. The "local" disk, as well as a variety of cloud
     | based disks are available to your application. Just store away!
     |
-    */
+     */
 
     'default' => env('FILESYSTEM_DRIVER', 'local'),
 
@@ -25,7 +25,7 @@ return [
     |
     | Supported Drivers: "local", "ftp", "sftp", "s3"
     |
-    */
+     */
 
     'disks' => [
         'local' => [
@@ -43,6 +43,13 @@ return [
             'driver' => 'local',
             'root' => storage_path('imagens'),
             'url' => env('APP_URL') . '/img',
+            'visibility' => 'public',
+        ],
+        // adicionando novo disk para produtos da galeria
+        'galeria' => [
+            'driver' => 'local',
+            'root' => storage_path('galeria'),
+            'url' => env('APP_URL') . '/glr',
             'visibility' => 'public',
         ],
         's3' => [
@@ -69,10 +76,12 @@ return [
     | `storage:link` Artisan command is executed. The array keys should be
     | the locations of the links and the values should be their targets.
     |
-    */
+     */
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
         public_path('img') => storage_path('imagens'),
+        // adicionando link entre glr e galeria
+        public_path('glr') => storage_path('galeria'),
     ],
 ];
