@@ -10,7 +10,7 @@
             @csrf
             <div class="mb-3">
                 <label for="nome" class="form-label">Nome</label>
-                <input type="text" class="form-control" id="nome" name="nome">
+                <input required type="text" class="form-control" id="nome" name="nome">
             </div>
 
             <div class="mb-3">
@@ -20,10 +20,10 @@
 
             <div class="mb-3">
                 <label for="preco" class="form-label">Preço</label>
-                <input type="number" class="form-control" id="preco" name="preco">
+                <input required type="number" class="form-control" id="preco" name="preco">
             </div>
 
-            <p>Imagem: <input type="file" name="imagem"></p>
+            <p>Imagem: <input required type="file" name="imagem"></p>
 
             <div class="mb-3">
                 <button type="submit" class="btn btn-outline-primary">Salvar</button>
