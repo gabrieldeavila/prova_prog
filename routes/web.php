@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\CropperController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProdutosController;
 use App\Http\Controllers\UsuariosController;
-use App\Http\Controllers\CropperController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
@@ -17,13 +18,43 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', function () {
-    return view('home', ['pagina' => 'home']);
-})->name('home');
+/*
+/
+/
+/
+// rotas galeria de produtos
+/
+/
+/
+ */
+// fazendo com que a home do site seja a galeria de produtos, sempre que acessada
+Route::get('/', [ProductsController::class, 'index'])->name('home');
 
-Route::get('/', function () {
-    return view('home', ['pagina' => 'home']);
-})->name('home');
+// rota para exibir a página de galeria de produtos
+Route::get('/produtos-galeria', [ProductsController::class, 'index'])
+    ->name('galeria');
+
+// rota para exibir formulário de adição de produtos
+Route::get('/produtos-galeria/add', [ProductsController::class, 'create'])
+    ->name('galeria.create');
+
+// rota para adicionar dados do produto que veio do formulário
+Route::post('/produtos-galeria/add', [ProductsController::class, 'store'])
+    ->name('galeria.store');
+
+// rota para mostrar dados de um produto específico
+Route::get('/produtos-galeria/{product}', [ProductsController::class, 'show'])
+    ->name('galeria.show');
+
+/*
+/
+/
+/
+// rotas criadas na disciplina
+/
+/
+/
+ */
 
 Route::get('/email/verify', function () {
     return view('auth.verify-email', ['pagina' => 'verify-email']);
